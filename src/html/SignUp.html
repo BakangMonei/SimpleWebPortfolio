@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,27 +28,22 @@
         }
       </style>
     <script src="../js/tailwind.config.js"></script>
-
     <title>Register</title>
 </head>
 
 <body class="flex items-center justify-center h-screen bg-gray-100">
     <div class="bg-white p-8 rounded shadow-md w-auto flex items-center">
-
         <form id="registerForm" class="grid grid-cols-3 gap-4 w-full">
             <!-- Column 1 -->
             <div class="col-span-1 mt-24">
-               
                 <div class="mb-4">
                     <label for="username" class="block text-sm font-medium text-gray-600">Username</label>
                     <input type="text" id="username" name="username" placeholder="Username" class="mt-1 p-2 w-full border rounded-md" />
                 </div>
-
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
                     <input type="email" id="email" name="email" placeholder="Email" class="mt-1 p-2 w-full border rounded-md" />
                 </div>
-
                 <div class="mb-4">
                     <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
                     <input type="password" id="password" placeholder="Password" name="password" class="mt-1 p-2 w-full border rounded-md" />
@@ -66,7 +60,6 @@
                     placeholder="Firstname"
                     class="mt-1 p-2 w-full border rounded-md"  />
                 </div>
-
                 <div class="mb-4">
                     <label for="lastname" class="block text-sm font-medium text-gray-600">Lastname</label>
                     <input type="text" id="lastname" 
@@ -76,15 +69,13 @@
             </div>
             <!-- Column 2 -->
             <div class="col-span-1">
-
                  <!-- Profile Image -->
-                <div class="col-span-1 flex justify-center items-center">
+                 <div class="col-span-1 flex justify-center items-center">
                     <label for="profile-image" class="cursor-pointer">
-                        <img src="../images/neizatheedev.png" alt="Profile" class="w-24 h-24 rounded-full object-cover border border-black">
-                        <input type="file" id="profile-image" class="hidden" />
+                        <img id="avatar-preview" src="../images/neizatheedev.png" alt="Profile" class="w-24 h-24 rounded-full object-cover border border-black">
+                        <input type="file" id="profile-image" class="hidden" onchange="previewImage(this)" />
                     </label>
                 </div>
-
                 <div class="mb-4">
                     <label for="dob" class="block text-sm font-medium text-gray-600">Date of Birth</label>
                     <input type="date" id="dob" name="dob" class="mt-1 p-2 w-full border rounded-md" placeholder="Date Of Birth"/>
@@ -105,7 +96,6 @@
                     placeholder="Postal Address"
                         class="mt-1 p-2 w-full border rounded-md" />
                 </div>
-
                 <!-- Physical Address Field -->
                 <div class="mb-4">
                     <label for="physicalAddress" class="block text-sm font-medium text-gray-600">Physical
@@ -114,7 +104,6 @@
                     placeholder="Physical Address"
                         class="mt-1 p-2 w-full border rounded-md" />
                 </div>
-
                 <!-- Country Field (dropdown) -->
                 <div class="mb-4">
                     <label for="country" class="block text-sm font-medium text-gray-600">Country</label>
@@ -126,57 +115,48 @@
                         <!-- Add more options as needed -->
                     </select>
                 </div>
-
                 <!-- Phone Number Field -->
                 <div class="mb-4">
                     <label for="phoneNumber" class="block text-sm font-medium text-gray-600">Phone Number</label>
                     <input type="tel" id="phoneNumber" name="phoneNumber" class="mt-1 p-2 w-full border rounded-md" placeholder="Phone Number"/>
                 </div>
-
                 <div class="flex justify-center">
                     <button type="submit" class="bg-blue-500 text-white p-2 rounded-md w-full">Register</button>
                 </div>
-
             </div>
 
             <!-- Column 3 -->
             <div class="col-span-1 mt-24">
-
                 <div class="mb-4">
                     <label for="Facebook" class="block text-sm font-medium text-gray-600">Facebook</label>
                     <input type="text" id="Facebook" name="Facebook"
                     placeholder="Facebook"
                         class="mt-1 p-2 w-full border rounded-md" />
                 </div>
-
                 <div class="mb-4">
                     <label for="LinkedIn" class="block text-sm font-medium text-gray-600">LinkedIn</label>
                     <input type="text" id="LinkedIn" name="LinkedIn"
                     placeholder="LinkedIn"
                         class="mt-1 p-2 w-full border rounded-md" />
                 </div>
-                
                 <div class="mb-4">
                     <label for="Twitter" class="block text-sm font-medium text-gray-600">Twitter</label>
                     <input type="text" id="Twitter" name="Twitter"
                     placeholder="Twitter"
                         class="mt-1 p-2 w-full border rounded-md" />
                 </div>
-
                 <div class="mb-4">
                     <label for="Instagram" class="block text-sm font-medium text-gray-600">Instagram</label>
                     <input type="text" id="Instagram" name="Instagram"
                     placeholder="Instagram"
                         class="mt-1 p-2 w-full border rounded-md" />
                 </div>
-
                 <div class="mb-4">
                     <label for="Upwork" class="block text-sm font-medium text-gray-600">Upwork</label>
                     <input type="text" id="Upwork" name="Upwork"
                     placeholder="Upwork"
                         class="mt-1 p-2 w-full border rounded-md" />
                 </div>
-
                 <!-- Phone Number Field -->
                 <div class="mb-4">
                     <label for="Thread" class="block text-sm font-medium text-gray-600">Thread</label>
@@ -184,18 +164,24 @@
                     placeholder="Thread"
                         class="mt-1 p-2 w-full border rounded-md" />
                 </div>
-
-
             </div>
-
-           
         </form>
-            
-        
     </div>
-
     <script src="./js/firebase.js"></script>
     <script src="./js/scripts.js"></script>
+
+    <script>
+        function previewImage(input) {
+            const preview = document.getElementById('avatar-preview');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </body>
 
 </html>

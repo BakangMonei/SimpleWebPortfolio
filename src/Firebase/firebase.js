@@ -6,10 +6,10 @@ import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import { getMessaging } from "firebase/messaging";
-
 import { signInWithEmailAndPassword } from "firebase/auth";
-
 import { cloudMessaging } from './cloudMessaging.js';
+
+import { handleLogin } from './auth.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,6 +21,7 @@ const firebaseConfig = {
   appId: "1:820820317427:web:730d8ace04ab6798201386",
   measurementId: "G-QMVZSGZRS8"
 };
+
 
 
 // Initialize Firebase
@@ -37,14 +38,15 @@ const cloudMessagingObj = new cloudMessaging(messaging);
 const loginForm = document.getElementById('loginForm');
 
 // Add an event listener for the form submission
+// Add an event listener for the form submission
 loginForm.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent the default form submission
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    // Sign in with email and password
-    signInWithEmailAndPassword(auth, email, password)
+    // Sign in with email and password using the handleLogin function
+    handleLogin(email, password)
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
@@ -58,7 +60,7 @@ loginForm.addEventListener('submit', function (event) {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.error('Login error:', errorMessage);
-            console.log('Error Here')
+
             // Display error to the user (you can update your UI accordingly)
         });
 });
